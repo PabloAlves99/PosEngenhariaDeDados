@@ -1,38 +1,29 @@
-# PROJETO FINAL
-# 🚗 Concessionária de Veículos – Estrutura de Banco de Dados
+# 🚗 Projeto Final – Concessionária de Veículos
 
-Este diretório contém os arquivos que explicam a estrutura e o design de um banco de dados relacional para uma **Concessionária de Veículos**. O objetivo é fornecer uma visão completa do modelo de dados, desde a **modelagem conceitual**, passando pela **modelagem lógica**, até os **scripts SQL** para a criação e manipulação do banco de dados.
+Este repositório contém o projeto final da disciplina de Banco de dados Relacionais.
+O objetivo é modelar e implementar um banco de dados para uma **Concessionária de Veículos**. O projeto aborda as etapas de **modelagem conceitual**, **modelagem lógica** e **implementação SQL**.
 
-### 🧩 **Conteúdo deste diretório**
+## 📄 Estrutura do Projeto
 
-- **Modelo Conceitual**: Representa as entidades e os relacionamentos principais do sistema da concessionária, como veículos, clientes, funcionários e vendas. O modelo conceitual é descrito em detalhes, com informações sobre as especializações e os atributos de cada entidade.
-  
-- **Modelo Lógico**: A partir do modelo conceitual, o modelo lógico é construído, transformando as entidades em tabelas e definindo as chaves primárias e estrangeiras, normalização e outras considerações.
+- [`projetoFinal.md`](./projetoFinal.md): Documento contendo a estrutura geral do projeto, incluindo:
+  - Entidades e atributos
+  - Especializações (herança)
+  - Relacionamentos
+<!-- - [`modelo_conceitual.md`](./modelo_conceitual.md): Diagrama e descrição do **modelo conceitual** do banco de dados.
+- [`modelo_logico.md`](./modelo_logico.md): Representação do **modelo lógico** com chaves primárias, estrangeiras e tipos de dados.
+- [`modelo_fisico.sql`](./modelo_fisico.sql): Script SQL para **criação das tabelas** no banco de dados relacional. -->
 
-- **SQL**: Scripts para a criação do banco de dados, incluindo a definição das tabelas, relacionamentos, e qualquer outro processo necessário para a implementação do banco de dados relacional.
+## 📌 Contexto
 
-### 📑 **Arquivos do Diretório**
+A base de dados foi projetada para gerenciar veículos (carros e motos), clientes (físicos e jurídicos), funcionários, vendas e formas de pagamento em uma concessionária. O projeto inclui especializações de entidades e relacionamentos com cardinalidade adequada.
 
-- **modelo_conceitual.md**: Documento explicativo com a descrição detalhada das entidades, atributos e seus relacionamentos.
-  
-- **modelo_logico.md**: Documento que apresenta o modelo lógico do banco de dados, incluindo tabelas, chaves e regras de integridade.
+## 🛠️ Tecnologias
 
-- **scripts_sql/**: Pasta contendo os scripts SQL necessários para criar e configurar o banco de dados, incluindo tabelas e relacionamentos.
+- Modelagem: Notação Entidade-Relacionamento Estendida (EER)
+- Banco de Dados:  MySQL 
 
-### 🛠 **Objetivo do Projeto**
+## 👨‍💻 Autor
 
-O projeto tem como objetivo criar uma base de dados relacional que ajude na gestão de veículos, vendas, clientes e funcionários de uma concessionária. Esse repositório serve como documentação e implementação inicial de um sistema de banco de dados eficiente e escalável.
+Pablo Henrique Alves da Silva
+Projeto desenvolvido para fins acadêmicos na pós-graduação em Engenharia de Dados.
 
----
-
-## ✍️ **Autor**
-
-**Pablo Henrique Alves**  
-Pós-graduando em Engenharia de Dados – PUC Minas  
-[LinkedIn](https://www.linkedin.com/in/pablo-alves-2825b1223/)
-
----
-
-## 📃 **Licença**
-
-Este projeto está sob a licença [MIT](LICENSE).

@@ -1,29 +1,81 @@
-# 🚗 Projeto Final – Concessionária de Veículos
+## 🧩 Estrutura – Concessionária de Veículos
 
-Este repositório contém o projeto final da disciplina de Banco de dados Relacionais.
-O objetivo é modelar e implementar um banco de dados para uma **Concessionária de Veículos**. O projeto aborda as etapas de **modelagem conceitual**, **modelagem lógica** e **implementação SQL**.
+### 🔹 Entidades e Atributos
 
-## 📄 Estrutura do Projeto
+#### **Veiculo**
+- *PK* id_veiculo
+- marca
+- modelo
+- ano
+- preco_atual
+- tipo_combustivel
+- cambio
+- tipo *(Carro, Moto)*
 
-- [`projetoFinal.md`](./projetoFinal.md): Documento contendo a estrutura geral do projeto, incluindo:
-  - Entidades e atributos
-  - Especializações (herança)
-  - Relacionamentos
-<!-- - [`modelo_conceitual.md`](./modelo_conceitual.md): Diagrama e descrição do **modelo conceitual** do banco de dados.
-- [`modelo_logico.md`](./modelo_logico.md): Representação do **modelo lógico** com chaves primárias, estrangeiras e tipos de dados.
-- [`modelo_fisico.sql`](./modelo_fisico.sql): Script SQL para **criação das tabelas** no banco de dados relacional. -->
+#### **Carro** *(Especialização de Veiculo)*
+- *PK, FK* id_veiculo → Veiculo
+- num_portas
+- tipo_motor
 
-## 📌 Contexto
+#### **Moto** *(Especialização de Veiculo)*
+- *PK, FK* id_veiculo → Veiculo
+- cilindradas
+- tipo_partida
 
-A base de dados foi projetada para gerenciar veículos (carros e motos), clientes (físicos e jurídicos), funcionários, vendas e formas de pagamento em uma concessionária. O projeto inclui especializações de entidades e relacionamentos com cardinalidade adequada.
+---
 
-## 🛠️ Tecnologias
+#### **Cliente**
+- *PK* id_cliente
+- nome
+- endereco
+- telefone
+- tipo_cliente *(Física, Jurídica)*
 
-- Modelagem: Notação Entidade-Relacionamento Estendida (EER)
-- Banco de Dados:  MySQL 
+#### **Cliente_PF** *(Especialização de Cliente)*
+- *PK, FK* id_cliente → Cliente
+- cpf
+- sexo
 
-## 👨‍💻 Autor
+#### **Cliente_PJ** *(Especialização de Cliente)*
+- *PK, FK* id_cliente → Cliente
+- nome_fantasia
+- cnpj
 
-Pablo Henrique Alves da Silva
-Projeto desenvolvido para fins acadêmicos na pós-graduação em Engenharia de Dados.
+---
 
+#### **Funcionario**
+- *PK* id_funcionario
+- nome
+- cargo
+- data_admissao
+- salario
+
+---
+
+#### **Forma_Pagamento**
+- *PK* id_pagamento
+- metodo_pagamento *(Ex: Dinheiro, Cartão, Financiamento)*
+- num_parcelas
+- valor_parcela
+
+---
+
+#### **Venda**
+- *PK* id_venda
+- data_venda
+- *FK* id_cliente → Cliente
+- *FK* id_funcionario → Funcionario
+- *FK* id_veiculo → Veiculo
+- *FK* id_pagamento → Forma_Pagamento
+- valor_venda
+
+---
+
+### 🔗 Relacionamentos
+
+- **Cliente** realiza **Venda**
+- **Funcionario** efetua **Venda**
+- **Veiculo** é vendido em **Venda**
+- **Venda** utiliza uma **Forma_Pagamento**
+- **Veiculo** se especializa em **Carro** ou **Moto**
+- **Cliente** se especializa em **Cliente_PF** ou **Cliente_PJ**  
