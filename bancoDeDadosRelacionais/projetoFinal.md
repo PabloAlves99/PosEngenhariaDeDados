@@ -51,15 +51,6 @@
 - salario
 
 ---
-
-#### **Forma_Pagamento**
-- *PK* id_pagamento
-- metodo_pagamento *(Ex: Dinheiro, Cartão, Financiamento)*
-- num_parcelas
-- valor_parcela
-
----
-
 #### **Venda**
 - *PK* id_venda
 - data_venda
@@ -68,6 +59,13 @@
 - *FK* id_veiculo → Veiculo
 - *FK* id_pagamento → Forma_Pagamento
 - valor_venda
+
+  
+#### **Forma_Pagamento**
+- *PK* id_pagamento
+- metodo_pagamento *(Ex: Dinheiro, Cartão, Financiamento)*
+- num_parcelas
+- valor_parcela
 
 ---
 
