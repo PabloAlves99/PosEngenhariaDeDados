@@ -85,9 +85,25 @@
 
 ### 🔗 Relacionamentos
 
-- **Cliente** realiza **Venda**
-- **Funcionario** efetua **Venda**
-- **Veiculo** é vendido em **Venda**
-- **Venda** utiliza uma **Forma_Pagamento**
-- **Veiculo** se especializa em **Carro** ou **Moto**
+- **Cliente** participa de **Venda**  
+  Cada cliente pode participar de uma ou várias vendas, representando as transações em que ele está envolvido. Cada venda está vinculada a exatamente um cliente participante.
+  *(1 Cliente → N Vendas)*
+
+- **Funcionário** efetua **Venda**  
+  Um funcionário pode efetuar várias vendas, mas cada venda é realizada por um único funcionário.  
+  *(1 Funcionário → N Vendas)*
+
+- **Veículo** é vendido em **Venda**  
+  Um veículo pode estar disponível (nenhuma venda) ou ter sido vendido em uma única venda.  
+  *(1 Veículo → 0..1 Venda)*
+
+- **Venda** utiliza uma **Forma_Pagamento**  
+  Cada venda possui uma forma de pagamento, que pode ser utilizada em várias vendas.  
+  *(1 Forma_Pagamento → N Vendas)*
+
+- **Veículo** se especializa em **Carro** ou **Moto**  
+  Cada veículo é obrigatoriamente um carro ou uma moto (especialização total e disjunta).
+
 - **Cliente** se especializa em **Cliente_PF** ou **Cliente_PJ**  
+  Cada cliente é obrigatoriamente pessoa física ou pessoa jurídica (especialização total e disjunta).
+
