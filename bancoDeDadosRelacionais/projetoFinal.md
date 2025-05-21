@@ -4,6 +4,7 @@
 
 #### **Veiculo**
 - *PK* id_veiculo – Identificador único do veículo
+- *FK* tipo_veiculo →TipoVeiculo 
 - chassi – Código VIN (Vehicle Identification Number), único por veículo
 - marca – Ex: Ford, Honda, Yamaha
 - modelo – Ex: Civic, Fazer 250
@@ -12,21 +13,19 @@
 - valor_tabela – Valor base do veículo (R$)
 - tipo_combustivel – Ex: Gasolina, Etanol, Flex, Diesel, Elétrico
 - cambio – Ex: Manual, Automático, CVT
-- tipo_veiculo – Ex: Carro, Moto
 - disponivel – Indica se está disponível para venda *(booleano)*
 
 #### **TipoVeiculo**
 - *PK* id_tipo - Identificador do tipo
+- tipo_veiculo - Ex: Carro, moto
 
 #### **ItensSeries**
-- *PK* id_itens - Identificador
+- *PK* id_item - Identificador do item
+- item - ( Ex: Airbag, cambio, possui_abs )
 
 #### **Carro** *(Especialização de Veiculo)*
 - *PK, FK* id_veiculo → Veiculo
 - num_portas – Quantidade de portas (ex: 2, 4)
-- tipo_motor – Ex: 1.0, 1.6 Turbo, 2.0
-- tipo_airbag – Ex: Nenhum, Frontal, Completo
-- possui_abs – Indica se possui sistema de freio ABS *(booleano)*
 
 #### **Moto** *(Especialização de Veiculo)*
 - *PK, FK* id_veiculo → Veiculo
