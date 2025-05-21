@@ -15,6 +15,12 @@
 - tipo_veiculo – Ex: Carro, Moto
 - disponivel – Indica se está disponível para venda *(booleano)*
 
+## **TipoVeiculo**
+- *PK* id_tipo - Identificador do tipo
+
+## **ItensSeries**
+- *PK* id_itens - Identificador
+
 #### **Carro** *(Especialização de Veiculo)*
 - *PK, FK* id_veiculo → Veiculo
 - num_portas – Quantidade de portas (ex: 2, 4)
