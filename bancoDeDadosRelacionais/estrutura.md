@@ -54,14 +54,14 @@
 
 ---
 
-#### **Veiculo_ItemSerie**
+#### **VeiculoItemSerie**
 - *PK* id – Identificador da relação
 - *FK* veiculo_id → Veiculo – Veículo associado
 - *FK* item_serie_id → ItemSerie – Item de série associado
 
 ---
 
-#### **Historico_Quilometragem**
+#### **HistoricoKM**
 - *PK* id – Identificador do registro
 - *FK* veiculo_id → Veiculo – Veículo relacionado
 - data – Data da medição
