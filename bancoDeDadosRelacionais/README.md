@@ -5,7 +5,7 @@ O objetivo é modelar e implementar um banco de dados para uma **Concessionária
 
 ## 📄 Estrutura do Projeto
 
-- [`projetoFinal.md`](./projetoFinal.md): Documento contendo a estrutura geral do projeto, incluindo:
+- [`estrutura.md`](./estrutura.md): Documento contendo a estrutura geral do projeto, incluindo:
   - Entidades e atributos
   - Especializações (herança)
   - Relacionamentos
