@@ -1,0 +1,88 @@
+
+Simulação de Sistemas: Banco Relacional(ACID) vs Banco NoSQL(BASE)
+
+1. Modelagem dos Dados
+
+Banco Relacional(ACID)
+
+Tabelas:
+- usuarios(id, nome, cpf, email)
+- produtos(id, nome, estoque, preco)
+- pedidos(id, usuario_id, data)
+- itens_pedido(id, pedido_id, produto_id, quantidade, preco_unitario)
+
+Decisões de Modelagem:
+- Normalização: separação clara das entidades para evitar redundância e inconsistências.
+- Integridade referencial: chaves estrangeiras conectam pedidos a usuários, e itens_pedido a produtos e pedidos.
+- Transações: garantem atomicidade, consistência e isolam operações concorrentes.
+
+Filosofia ACID:
+- Atomicidade: ou todas as operações são concluídas com sucesso, ou nenhuma delas é aplicada.
+- Consistência: as regras de integridade e restrições são sempre respeitadas.
+- Isolamento: transações simultâneas não interferem umas nas outras.
+- Durabilidade: após o commit, os dados permanecem salvos, mesmo em caso de falhas.
+
+
+Banco NoSQL(BASE) — Exemplo: Document Store(MongoDB)
+
+Coleções:
+- usuarios: {_id, nome, cpf, email}
+- produtos: {_id, nome, estoque, preco}
+- pedidos: {_id, usuario_id, data, itens: [{produto_id, quantidade, preco_unitario}]}
+
+Decisões de Modelagem:
+- Desnormalização: os itens_pedido são embutidos diretamente no documento pedidos.
+- Menos foco em integridade referencial e maior foco na performance e escalabilidade.
+
+Filosofia BASE:
+- Basicamente Disponível: o sistema permanece acessível, mesmo diante de falhas parciais.
+- Estado Flexível: aceita inconsistências temporárias para garantir disponibilidade.
+- Eventual Consistência: o sistema garante que, com o tempo, todos os nós atinjam um estado consistente.
+
+2. Simulação de Transações
+
+Cenário: desconexão do banco no meio da transação.
+
+Banco Relacional(ACID):
+- O pedido é parcialmente salvo? Não. A transação é revertida automaticamente.
+- O estoque foi alterado incorretamente? Não. Alterações são desfeitas com o rollback.
+- O sistema foi capaz de se recuperar? Sim, via mecanismo de transações.
+
+Banco NoSQL(BASE):
+- O pedido é parcialmente salvo? Possivelmente sim, dependendo da configuração.
+- O estoque foi alterado incorretamente? Pode ocorrer inconsistência momentânea.
+- O sistema foi capaz de se recuperar? Depende. Muitas vezes é necessária lógica extra na aplicação para garantir consistência.
+
+3. Análise de Consistência
+
+Teste: dois pedidos simultâneos comprando o último item no estoque.
+
+Banco Relacional(ACID):
+- Consistência: garantida por bloqueios e controle de concorrência.
+- Isolamento: forte, previne leituras sujas e conflitos.
+- Durabilidade: garantida após commit.
+
+Banco NoSQL(BASE):
+- Consistência: eventual; pode ocorrer over-selling se não houver controle adicional.
+- Isolamento: fraco, geralmente não bloqueia operações concorrentes.
+- Durabilidade: variável conforme configuração do banco.
+
+4. Discussão Final
+
+Em que situações o modelo ACID é preferível?
+- Sistemas que demandam alta integridade e consistência dos dados, como:
+  - Bancos.
+  - Sistemas financeiros.
+  - ERPs.
+- Quando qualquer falha ou estado inconsistente pode gerar graves prejuízos.
+
+Em que situações o modelo BASE traz vantagens?
+- Aplicações que priorizam escala e disponibilidade, como:
+  - Redes sociais.
+  - Plataformas de e-commerce de grande escala.
+  - Sistemas de recomendação.
+- Quando são aceitáveis inconsistências temporárias, desde que posteriormente corrigidas.
+
+Como mitigar as desvantagens de cada abordagem?
+- No ACID: ajustar níveis de isolamento conforme a necessidade para melhorar a performance.
+- No BASE: implementar mecanismos de verificação, como compensação de transações ou mecanismos de consistência eventual mais rápidos.
