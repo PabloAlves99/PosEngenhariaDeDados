@@ -1,162 +1,155 @@
-## 🧩 Estrutura – Concessionária de Veículos (Modelo Atualizado)
+# 🧩 Estrutura – Concessionária de Veículos (Modelo Atualizado)
 
-### 🔹 Entidades e Atributos
+## 🔹 Entidades e Atributos
 
-#### **TipoVeiculo**
-- *PK* id – Identificador único do tipo
-- descricao – Descrição do tipo (Ex: Carro, Moto)
-
----
-
-#### **Marca**
-- *PK* id – Identificador único da marca
-- nome – Nome da marca (Ex: Ford, Honda, Yamaha)
+### TipoVeiculo
+- **id_tipo** (PK) – Identificador único do tipo
+- **descricao** – Descrição do tipo (Ex: Carro, Moto)
 
 ---
 
-#### **Modelo**
-- *PK* id – Identificador único do modelo
-- *FK* marca_id → Marca – Marca associada ao modelo
-- nome – Nome do modelo (Ex: Civic, Fazer 250)
+### Marca
+- **id_marca** (PK) – Identificador único da marca
+- **nome_marca** – Nome da marca (Ex: Ford, Honda, Yamaha)
 
 ---
 
-#### **Versao**
-- *PK* id – Identificador único da versão
-- *FK* modelo_id → Modelo – Modelo associado
-- nome – Nome da versão (Ex: EXL, Sport)
-- motorizacao – Detalhes da motorização (Ex: 1.5 Turbo, 250cc)
-- cambio – Tipo de câmbio (Ex: Manual, Automático, CVT)
+### Modelo
+- **id_modelo** (PK) – Identificador único do modelo
+- **marca_id** (FK) → Marca(id_marca) – Marca associada ao modelo
+- **nome_modelo** – Nome do modelo (Ex: Civic, Fazer 250)
 
 ---
 
-#### **ItemSerie**
-- *PK* id – Identificador único do item
-- nome – Nome do item de série (Ex: Airbag, ABS, Ar-condicionado)
-- categoria - (Ex: segurança, conforto, tecnologia)
+### Versao
+- **id_versao** (PK) – Identificador único da versão
+- **modelo_id** (FK) → Modelo(id_modelo) – Modelo associado
+- **nome_versao** – Nome da versão (Ex: EXL, Sport)
+- **motorizacao** – Detalhes da motorização (Ex: 1.5 Turbo, 250cc)
+- **cambio** – Tipo de câmbio (Ex: Manual, Automático, CVT)
 
 ---
 
-#### **Veiculo**
-- *PK* id – Identificador único do veículo
-- placa – Placa do veículo (Ex: ABC1D23)
-- chassi – Código VIN, único
-- renavam – Registro Nacional de Veículos Automotores
-- cor – Cor do veículo
-- ano_fabricacao – Ano de fabricação
-- ano_modelo – Ano do modelo
-- quilometragem_atual – Quilometragem atual
-- tipo_combustivel – Ex: Gasolina, Etanol, Flex, Diesel, Elétrico
-- *FK* tipo_veiculo_id → TipoVeiculo – Tipo do veículo
-- *FK* modelo_id → Modelo – Modelo associado
-- *FK* versao_id → Versao – Versão do modelo
-- status – Disponibilidade do veículo (Ex: Disponível, Vendido, Reservado)
+### ItemSerie
+- **id_item** (PK) – Identificador único do item
+- **nome_item** – Nome do item de série (Ex: Airbag, ABS, Ar-condicionado)
+- **categoria** – Categoria do item (Ex: Segurança, Conforto, Tecnologia, Visual)
 
 ---
 
-#### **VeiculoItemSerie**
-- *PK* id – Identificador da relação
-- *FK* veiculo_id → Veiculo – Veículo associado
-- *FK* item_serie_id → ItemSerie – Item de série associado
+### Veiculo
+- **id_veiculo** (PK) – Identificador único do veículo
+- **placa** – Placa do veículo (Ex: ABC1D23)
+- **chassi** – Código VIN, único
+- **renavam** – Registro Nacional de Veículos Automotores
+- **cor** – Cor do veículo
+- **ano_fabricacao** – Ano de fabricação
+- **ano_modelo** – Ano do modelo
+- **quilometragem_atual** – Quilometragem atual
+- **tipo_combustivel** – Ex: Gasolina, Etanol, Flex, Diesel, Elétrico
+- **tipo_veiculo_id** (FK) → TipoVeiculo(id_tipo) – Tipo do veículo
+- **modelo_id** (FK) → Modelo(id_modelo) – Modelo associado
+- **versao_id** (FK) → Versao(id_versao) – Versão do modelo
+- **status_veiculo** – Disponibilidade do veículo (Ex: Disponível, Vendido, Reservado)
 
 ---
 
-#### **HistoricoKM**
-- *PK* id – Identificador do registro
-- *FK* veiculo_id → Veiculo – Veículo relacionado
-- data – Data da medição
-- quilometragem – Quilometragem registrada
+### VeiculoItemSerie
+- **id_vis** (PK) – Identificador da relação
+- **veiculo_id** (FK) → Veiculo(id_veiculo) – Veículo associado
+- **id_item_serie** (FK) → ItemSerie(id_item) – Item de série associado
 
 ---
 
-#### **Cliente**
-- *PK* id_cliente – Identificador único do cliente
-- nome – Nome completo (PF) ou razão social (PJ)
-- endereco – Endereço completo
-- telefone_contato – Número com DDD
-- email – E-mail válido
-- tipo_cliente – Física ou Jurídica
-- data_cadastro – Data de registro
+### HistoricoKM
+- **id_hist** (PK) – Identificador do registro
+- **veiculo_id** (FK) → Veiculo(id_veiculo) – Veículo relacionado
+- **data_hist** – Data da medição
+- **quilometragem** – Quilometragem registrada
 
 ---
 
-#### **Cliente_PF** *(Especialização de Cliente)*
-- *PK, FK* id_cliente → Cliente
-- cpf – Cadastro de Pessoa Física
-- sexo – Masculino, Feminino, Outro
-- data_nascimento – Data de nascimento
+### Endereco
+- **id_endereco** (PK) – Identificador único do endereço
+- **logradouro** – Nome da rua/avenida
+- **numero** – Número do imóvel
+- **complemento** – Complemento (se houver)
+- **bairro** – Bairro
+- **cidade** – Cidade
+- **estado** – Estado (UF)
+- **cep** – Código postal
 
 ---
 
-#### **Cliente_PJ** *(Especialização de Cliente)*
-- *PK, FK* id_cliente → Cliente
-- nome_fantasia – Nome comercial
-- cnpj – Cadastro Nacional de Pessoa Jurídica
+### Cliente
+- **id_cliente** (PK) – Identificador único do cliente
+- **nome** – Nome completo (PF) ou razão social (PJ)
+- **endereco_id** (FK) → Endereco(id_endereco) – Endereço completo
+- **telefone_contato** – Número com DDD
+- **email** – E-mail válido
+- **tipo_cliente** – Física ou Jurídica
+- **data_cadastro** – Data de registro
 
 ---
 
-#### **Funcionario**
-- *PK* id_funcionario – Identificador único do funcionário
-- nome – Nome completo
-- cargo – Função (Ex: Vendedor, Gerente)
-- data_admissao – Data de admissão
-- salario – Valor do salário
+### ClientePF (Especialização de Cliente)
+- **id_cliente** (PK, FK) → Cliente(id_cliente)
+- **cpf** – Cadastro de Pessoa Física
+- **sexo** – Masculino, Feminino, Outro
+- **data_nascimento** – Data de nascimento
 
 ---
 
-#### **Venda**
-- *PK* id_venda – Identificador único da venda
-- data_venda – Data da venda
-- *FK* id_cliente → Cliente – Cliente comprador
-- *FK* id_funcionario → Funcionario – Funcionário responsável
-- *FK* id_veiculo → Veiculo – Veículo vendido
-- *FK* id_pagamento → Forma_Pagamento – Forma de pagamento
-- valor_venda – Valor final
-- desconto_aplicado – Desconto, se houver
-- comissao_vendedor – Comissão do vendedor
+### ClientePJ (Especialização de Cliente)
+- **id_cliente** (PK, FK) → Cliente(id_cliente)
+- **nome_fantasia** – Nome comercial
+- **cnpj** – Cadastro Nacional de Pessoa Jurídica
 
 ---
 
-#### **Forma_Pagamento**
-- *PK* id_pagamento – Identificador único
-- metodo_pagamento – Ex: Dinheiro, Cartão, Financiamento
-- quantidade_parcelas – Total de parcelas
-- valor_parcela – Valor de cada parcela
+### Funcionario
+- **id_funcionario** (PK) – Identificador único do funcionário
+- **nome** – Nome completo
+- **cargo** – Função (Ex: Vendedor, Gerente)
+- **data_admissao** – Data de admissão
+- **salario** – Valor do salário
 
 ---
 
-### 🔗 Relacionamentos
+### FormaPagamento
+- **id_pagamento** (PK) – Identificador único da forma de pagamento
+- **metodo_pagamento** – Ex: Dinheiro, Cartão, Financiamento
+- **quantidade_parcelas** – Total de parcelas (padrão 1)
+- **valor_parcela** – Valor de cada parcela
 
-- **Veiculo** → **TipoVeiculo** *(N:1)*  
-  Cada veículo pertence a um tipo de veículo.
+---
 
-- **Veiculo** → **Modelo** *(N:1)*  
-  Cada veículo pertence a um modelo.
+### Venda
+- **id_venda** (PK) – Identificador único da venda
+- **data_venda** – Data da venda
+- **id_cliente** (FK) → Cliente(id_cliente) – Cliente comprador
+- **id_funcionario** (FK) → Funcionario(id_funcionario) – Funcionário responsável
+- **id_veiculo** (FK) → Veiculo(id_veiculo) – Veículo vendido
+- **id_pagamento** (FK) → FormaPagamento(id_pagamento) – Forma de pagamento
+- **valor_venda** – Valor final
+- **desconto_aplicado** – Desconto aplicado (padrão 0.00)
+- **comissao_vendedor** – Comissão do vendedor (padrão 0.00)
 
-- **Modelo** → **Marca** *(N:1)*  
-  Cada modelo pertence a uma marca.
+---
 
-- **Veiculo** → **Versao** *(N:1)*  
-  Cada veículo possui uma versão específica.
+## 🔗 Relacionamentos
 
-- **Veiculo** → **ItemSerie** *(N:N via Veiculo_ItemSerie)*  
-  Cada veículo possui vários itens de série e cada item pode pertencer a vários veículos.
+- **Veiculo** → **TipoVeiculo** (N:1)  
+- **Veiculo** → **Modelo** (N:1)  
+- **Modelo** → **Marca** (N:1)  
+- **Veiculo** → **Versao** (N:1)  
+- **Veiculo** → **ItemSerie** (N:N via VeiculoItemSerie)  
+- **Veiculo** → **HistoricoKM** (1:N)  
+- **Cliente** → **Endereco** (N:1)  
+- **Cliente** → **Venda** (1:N)  
+- **Funcionario** → **Venda** (1:N)  
+- **Venda** → **Veiculo** (1:1)  
+- **Venda** → **FormaPagamento** (N:1)  
+- **Cliente** → **ClientePF** ou **ClientePJ** (Especialização total e disjunta)
 
-- **Veiculo** → **Historico_Quilometragem** *(1:N)*  
-  Cada veículo pode ter vários registros históricos de quilometragem.
-
-- **Cliente** → **Venda** *(1:N)*  
-  Cada cliente pode participar de várias vendas.
-
-- **Funcionario** → **Venda** *(1:N)*  
-  Cada funcionário pode efetuar várias vendas.
-
-- **Venda** → **Veiculo** *(1:1)*  
-  Cada venda refere-se a um único veículo.
-
-- **Venda** → **Forma_Pagamento** *(N:1)*  
-  Cada venda utiliza uma forma de pagamento.
-
-- **Cliente** → **Cliente_PF** ou **Cliente_PJ**  
-  Especialização total e disjunta.
-
+---
