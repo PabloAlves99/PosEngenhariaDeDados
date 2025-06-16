@@ -29,7 +29,7 @@ CREATE TABLE Versao (
     cambio VARCHAR(50) NOT NULL,
     
     FOREIGN KEY (modelo_id) REFERENCES Modelo(id_modelo)
-		ON DELETE CASCADE
+		ON DELETE RESTRICT
 		ON UPDATE CASCADE,
     
     CONSTRAINT chk_cambio CHECK (cambio IN ('Manual', 'Automático', 'Automatizado', 'CVT')),
@@ -83,7 +83,7 @@ CREATE TABLE VeiculoItemSerie (
     item_serie_id INT NOT NULL,
     
     FOREIGN KEY (veiculo_id) REFERENCES Veiculo(id_veiculo)
-		ON DELETE CASCADE
+		ON DELETE RESTRICT
 		ON UPDATE CASCADE,
 
 	FOREIGN KEY (item_serie_id) REFERENCES ItemSerie(id_item)
@@ -98,7 +98,7 @@ CREATE TABLE HistoricoKM (
     quilometragem INT NOT NULL,
     
     FOREIGN KEY (veiculo_id) REFERENCES Veiculo(id_veiculo)
-		ON DELETE CASCADE
+		ON DELETE RESTRICT
 		ON UPDATE CASCADE
 );
 
@@ -138,7 +138,7 @@ CREATE TABLE ClientePF (
     CONSTRAINT chk_sexo CHECK (sexo IN ('Masculino', 'Feminino', 'Outro')),
 
     FOREIGN KEY (id_cliente) REFERENCES Cliente(id_cliente)
-        ON DELETE CASCADE
+        ON DELETE RESTRICT
         ON UPDATE CASCADE
 );
 
@@ -148,7 +148,7 @@ CREATE TABLE ClientePJ (
     cnpj VARCHAR(14) NOT NULL UNIQUE,
 
     FOREIGN KEY (id_cliente) REFERENCES Cliente(id_cliente)
-        ON DELETE CASCADE
+        ON DELETE RESTRICT
         ON UPDATE CASCADE
 );
 
