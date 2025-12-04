@@ -1,0 +1,11 @@
+version: '3.9'
+
+services:
+  mongo:
+    image: mongo:6.0
+    container_name: mongo_sales
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongo/data:/data/db

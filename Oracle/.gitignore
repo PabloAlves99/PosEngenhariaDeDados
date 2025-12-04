@@ -1,0 +1,56 @@
+############################
+# PYTHON
+############################
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pdb
+*.pkl
+*.log
+
+# Ambiente virtual
+venv/
+.env/
+.venv/
+
+# Ferramentas
+.mypy_cache/
+.pytest_cache/
+coverage/
+dist/
+build/
+*.egg-info/
+
+############################
+# DOCKER
+############################
+# Arquivos gerados pelo Docker
+docker-data/
+docker-compose.override.yml
+
+############################
+# MONGODB (dados locais)
+############################
+ProjetoFinal/mongo/data/*
+
+############################
+# EDITORES
+############################
+# VS Code
+.vscode/
+*.code-workspace
+
+# Outros editores
+.idea/
+*.swp
+
+############################
+# SISTEMA OPERACIONAL
+############################
+# Windows
+Thumbs.db
+Desktop.ini
+
+# macOS
+.DS_Store
