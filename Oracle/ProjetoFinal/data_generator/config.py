@@ -1,4 +1,5 @@
 from faker import Faker
+from .product_generator import generate_products
 
 fake = Faker("pt_BR")
 
@@ -17,13 +18,4 @@ CITIES = [
     ("Salvador", "BA")
 ]
 
-PRODUCTS = [
-    {"product_id": "PROD-001", "product_name": "Notebook Gamer",
-        "category": "Eletrônicos", "unit_price": 4500.00},
-    {"product_id": "PROD-002", "product_name": "Mouse Gamer",
-        "category": "Acessórios", "unit_price": 150.00},
-    {"product_id": "PROD-003", "product_name": "Teclado Mecânico",
-        "category": "Acessórios", "unit_price": 350.00},
-    {"product_id": "PROD-004", "product_name": "Monitor 27''",
-        "category": "Eletrônicos", "unit_price": 1800.00}
-]
+PRODUCTS = generate_products(50)
