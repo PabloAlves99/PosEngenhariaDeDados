@@ -1,8 +1,5 @@
 import oracledb
 
-# =========================
-# CONEXÃO SYSDBA
-# =========================
 DB_CONFIG = {
     "user": "sys",
     "password": "oracle",
@@ -11,14 +8,16 @@ DB_CONFIG = {
 }
 
 
-def safe_execute(cursor, sql):
+def create_user(cursor, username, password):
     try:
-        cursor.execute(sql)
-        print("OK")
+        cursor.execute(f"CREATE USER {username} IDENTIFIED BY {password}")
+        cursor.execute(
+            f"GRANT CREATE SESSION, CREATE TABLE, CREATE SEQUENCE TO {username}")
+        print(f"{username} criado com sucesso")
     except oracledb.DatabaseError as e:
         error, = e.args
-        if error.code in (955, 1920):
-            print("IGNORADO:", error.message)
+        if error.code in (955, 1920):  # usuário já existe
+            print(f"{username} já existe. Ignorado.")
         else:
             raise
 
@@ -27,39 +26,8 @@ def bootstrap():
     conn = oracledb.connect(**DB_CONFIG)
     cursor = conn.cursor()
 
-    # =========================
-    # USUÁRIO STAGING
-    # =========================
-    safe_execute(cursor, """
-    BEGIN
-        EXECUTE IMMEDIATE 'CREATE USER STAGING IDENTIFIED BY staging';
-    EXCEPTION
-        WHEN OTHERS THEN
-            IF SQLCODE != -1920 THEN RAISE; END IF;
-    END;
-    """)
-
-    safe_execute(cursor, """
-    GRANT CREATE SESSION, CREATE TABLE, CREATE SEQUENCE
-    TO STAGING
-    """)
-
-    # =========================
-    # USUÁRIO DW
-    # =========================
-    safe_execute(cursor, """
-    BEGIN
-        EXECUTE IMMEDIATE 'CREATE USER DW IDENTIFIED BY dw';
-    EXCEPTION
-        WHEN OTHERS THEN
-            IF SQLCODE != -1920 THEN RAISE; END IF;
-    END;
-    """)
-
-    safe_execute(cursor, """
-    GRANT CREATE SESSION, CREATE TABLE, CREATE SEQUENCE
-    TO DW
-    """)
+    create_user(cursor, "STAGING", "staging")
+    create_user(cursor, "DW", "dw")
 
     conn.commit()
     conn.close()
