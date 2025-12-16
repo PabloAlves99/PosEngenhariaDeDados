@@ -40,7 +40,7 @@ O container `mongo_sales` deve aparecer na lista.
 
 ## 3. Visualizar Documentos Criados
 
-    python -m data_generator.view_data
+    python -m view_data
 
 Isso exibirá os primeiros 5 documentos da coleção.
 
@@ -49,7 +49,7 @@ Isso exibirá os primeiros 5 documentos da coleção.
 ## 4. Apagar Todos os Documentos (opcional)
 
     python - <<EOF
-    from data_generator.view_data import drop_content
+    from view_data import drop_content
     drop_content()
     EOF
 
