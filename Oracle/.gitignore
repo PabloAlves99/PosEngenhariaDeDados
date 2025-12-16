@@ -8,7 +8,7 @@ __pycache__/
 *.pdb
 *.pkl
 *.log
-config.py
+*config.py
 
 # Ambiente virtual
 venv/
