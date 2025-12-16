@@ -34,6 +34,7 @@ docker-compose.override.yml
 # MONGODB (dados locais)
 ############################
 ProjetoFinal/mongo/data/*
+ProjetoFinal/oracle/data/*
 
 ############################
 # EDITORES

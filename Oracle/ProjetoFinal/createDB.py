@@ -1,4 +1,10 @@
 import oracledb
+from data_generator.config import (
+    MONGO_URI,
+    DB_NAME,
+    COLLECTION_NAME
+)
+
 
 # =========================
 # CONFIGURAÇÃO DE CONEXÃO
