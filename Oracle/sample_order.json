@@ -1,0 +1,126 @@
+{
+    "original": {
+        "_id": "00b064fd-5dc3-4a8a-9d4e-1945e6988714",
+        "order_id": "ORD-2025-941866",
+        "order_date": "2025-02-21T01:17:24Z",
+        "customer": {
+            "customer_id": "CUST-410",
+            "name": "Vinícius da Rocha",
+            "email": "igor97@example.org",
+            "document": "35928640765"
+        },
+        "items": [
+            {
+                "product_id": "PROD-018",
+                "product_name": "HD Turbo",
+                "category": "Acessórios",
+                "unit_price": 168.41,
+                "quantity": 2,
+                "discount": 106.23
+            },
+            {
+                "product_id": "PROD-027",
+                "product_name": "Smartwatch Turbo",
+                "category": "Casa e Escritório",
+                "unit_price": 230.27,
+                "quantity": 3,
+                "discount": 73.75
+            },
+            {
+                "product_id": "PROD-036",
+                "product_name": "Caixa de Som Turbo",
+                "category": "Informática",
+                "unit_price": 918.84,
+                "quantity": 3,
+                "discount": 207.28
+            },
+            {
+                "product_id": "PROD-018",
+                "product_name": "HD Turbo",
+                "category": "Acessórios",
+                "unit_price": 168.41,
+                "quantity": 2,
+                "discount": 82.1
+            }
+        ],
+        "payment": {
+            "method": "BOLETO",
+            "installments": 6,
+            "status": "REJECTED"
+        },
+        "shipping": {
+            "city": "Rio de Janeiro",
+            "state": "RJ",
+            "country": "BR",
+            "shipping_value": 46.54
+        }
+    },
+    "transformado": {
+        "_id": "00b064fd-5dc3-4a8a-9d4e-1945e6988714",
+        "order_id": "ORD-2025-941866",
+        "order_date": "2025-02-20T22:17:24-03:00",
+        "customer": {
+            "customer_id": "CUST-410",
+            "name": "VINICIUS DA ROCHA",
+            "email": "IGOR97@EXAMPLE.ORG",
+            "document": "35928640765"
+        },
+        "items": [
+            {
+                "product_id": "PROD-018",
+                "product_name": "HD TURBO",
+                "category": "ACESSORIOS",
+                "unit_price": 168.41,
+                "quantity": 2,
+                "discount": 106.23,
+                "gross_amount": 336.82,
+                "net_amount": 230.59,
+                "discount_percent": 31.54
+            },
+            {
+                "product_id": "PROD-027",
+                "product_name": "SMARTWATCH TURBO",
+                "category": "CASA E ESCRITORIO",
+                "unit_price": 230.27,
+                "quantity": 3,
+                "discount": 73.75,
+                "gross_amount": 690.81,
+                "net_amount": 617.06,
+                "discount_percent": 10.68
+            },
+            {
+                "product_id": "PROD-036",
+                "product_name": "CAIXA DE SOM TURBO",
+                "category": "INFORMATICA",
+                "unit_price": 918.84,
+                "quantity": 3,
+                "discount": 207.28,
+                "gross_amount": 2756.52,
+                "net_amount": 2549.24,
+                "discount_percent": 7.52
+            },
+            {
+                "product_id": "PROD-018",
+                "product_name": "HD TURBO",
+                "category": "ACESSORIOS",
+                "unit_price": 168.41,
+                "quantity": 2,
+                "discount": 82.1,
+                "gross_amount": 336.82,
+                "net_amount": 254.72,
+                "discount_percent": 24.38
+            }
+        ],
+        "payment": {
+            "method": "BOLETO",
+            "installments": 6,
+            "status": "REJECTED"
+        },
+        "shipping": {
+            "city": "RIO DE JANEIRO",
+            "state": "RJ",
+            "country": "BR",
+            "shipping_value": 46.54
+        }
+    }
+}

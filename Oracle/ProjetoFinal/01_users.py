@@ -13,7 +13,9 @@ def create_user(cursor, username, password):
         cursor.execute(f"CREATE USER {username} IDENTIFIED BY {password}")
         cursor.execute(
             f"GRANT CREATE SESSION, CREATE TABLE, CREATE SEQUENCE TO {username}")
+        cursor.execute(f"ALTER USER {username} QUOTA UNLIMITED ON USERS")
         print(f"{username} criado com sucesso")
+
     except oracledb.DatabaseError as e:
         error, = e.args
         if error.code in (955, 1920):  # usuário já existe
