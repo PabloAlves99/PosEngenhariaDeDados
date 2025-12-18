@@ -1,4 +1,4 @@
-# Guia de Execução 
+# Guia de Execução
 
 ## 1. Subir a Infraestrutura com Docker
 
@@ -64,33 +64,34 @@ python view_data.py
 ### Comportamento
 
 * Exibe os documentos originais
-* Exibe os documentos formatados
+* Exibe os documentos transformados
 * Mostra apenas uma amostra (ex.: 1 ou 5 registros)
 
 ---
 
 ## 5. Bootstrap do Oracle (Infra Lógica)
 
-Cria os schemas necessários (`STAGING`, `DW`) e permissões.
+Cria os schemas necessários (`STAGING`, `DW`) e concede permissões.
 
 ```bash
-python 01_bootstrap_oracle.py
+python 01_users.py
 ```
 
 ### Resultado esperado
 
 * Schemas criados (ou ignorados se já existirem)
 * Grants aplicados
+* Quotas de tablespace ajustadas (`USERS`)
 * Nenhuma tabela de negócio criada ainda
 
 ---
 
 ## 6. Criação do Modelo Dimensional (DDL)
 
-Cria todas as tabelas, sequências e índices do Data Warehouse.
+Cria todas as tabelas, índices e constraints do Data Warehouse.
 
 ```bash
-python 02_create_dw_tables.py
+python 02_tables.py
 ```
 
 ### Estruturas criadas
@@ -104,24 +105,30 @@ python 02_create_dw_tables.py
 
 ---
 
-## 7. Executar o Processo de Transformação (ETL)
+## 7. Executar o Processo Completo de ETL
 
 Responsável por:
 
 * Ler dados do MongoDB
 * Normalizar strings (UPPER, TRIM, sem acento)
 * Converter datas UTC → America/São_Paulo
-* Calcular métricas de negócio
+* Calcular métricas de negócio (gross, net, discount %)
 * Carregar dados na STAGING
 * Aplicar SCD Tipo 2 nas dimensões
-* Popular a tabela fato
+* Popular a tabela fato (`FCT_SALES`)
 
 ### Execução
 
 ```bash
-python transform.py
+python ETL.py
 ```
 
+### Resultado esperado
+
+* Dados carregados em `STAGING.STG_SALES`
+* Dimensões `DW.DIM_CUSTOMER`, `DW.DIM_PRODUCT` e `DW.DIM_DATE` atualizadas
+* Fato `DW.FCT_SALES` populado
+* Logs de execução gravados em `STAGING.ETL_EXECUTION_LOG`
 
 ---
 
