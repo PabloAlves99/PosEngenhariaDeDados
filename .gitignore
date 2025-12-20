@@ -175,3 +175,4 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+*microdados_ed_basica_2024.csv
