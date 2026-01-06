@@ -1,0 +1,5 @@
+SQL_SERVER = "localhost,1433"
+SQL_DATABASE = "master"
+SQL_USER = "sa"
+SQL_PASSWORD = "SenhaForte123!"
+SQL_DRIVER = "ODBC Driver 17 for SQL Server"
