@@ -3,20 +3,20 @@ GO
 
 CREATE TABLE dw.dim_tempo
 (
-    sk_tempo INT IDENTITY(1,1) NOT NULL,
-    nu_ano INT NOT NULL,
-    nu_mes INT NOT NULL,
-    no_mes VARCHAR(20) NOT NULL,
+    sk_tempo INT IDENTITY(1,1),
+    nu_ano INT,
+    nu_mes INT,
+    no_mes VARCHAR(20),
 
     CONSTRAINT pk_dim_tempo PRIMARY KEY (sk_tempo)
 );
 
 CREATE TABLE dw.dim_municipio
 (
-    sk_municipio INT IDENTITY(1,1) NOT NULL,
-    co_municipio INT NOT NULL,
-    sg_uf CHAR(2) NOT NULL,
-    no_municipio VARCHAR(150) NOT NULL,
+    sk_municipio INT IDENTITY(1,1),
+    co_municipio INT,
+    sg_uf CHAR(2),
+    no_municipio VARCHAR(150),
 
     CONSTRAINT pk_dim_municipio PRIMARY KEY (sk_municipio),
     CONSTRAINT uq_dim_municipio UNIQUE (co_municipio)
@@ -24,19 +24,19 @@ CREATE TABLE dw.dim_municipio
 
 CREATE TABLE dw.dim_pessoa
 (
-    sk_pessoa INT IDENTITY(1,1) NOT NULL,
-    sexo CHAR(1) NOT NULL,
-    faixa_etaria VARCHAR(30) NOT NULL,
-    escolaridade INT NOT NULL,
+    sk_pessoa INT IDENTITY(1,1),
+    sexo CHAR(1),
+    faixa_etaria VARCHAR(30),
+    escolaridade INT,
 
     CONSTRAINT pk_dim_pessoa PRIMARY KEY (sk_pessoa)
 );
 
 CREATE TABLE dw.fato_pnad_covid
 (
-    sk_tempo INT NOT NULL,
-    sk_municipio INT NOT NULL,
-    sk_pessoa INT NOT NULL,
+    sk_tempo INT,
+    sk_municipio INT,
+    sk_pessoa INT,
     ocupacao INT,
     rendimento DECIMAL(12,2),
     sintomas INT,

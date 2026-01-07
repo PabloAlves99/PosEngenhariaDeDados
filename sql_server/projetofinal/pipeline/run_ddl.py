@@ -5,6 +5,7 @@ import pyodbc
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STAGING_SQL = os.path.join(BASE_DIR, "sql", "staging.sql")
 DW_SQL = os.path.join(BASE_DIR, "sql", "dw.sql")
+# procedure = os.path.join(BASE_DIR, "sql", "usp_carregar_fato.sql")
 
 # Conexão SQL Server
 CONN_STR = (
@@ -35,13 +36,9 @@ def executar_sql(arquivo_sql):
 
 
 def main():
-    print("Criando STAGING...")
     executar_sql(STAGING_SQL)
-
-    print("Criando DATA WAREHOUSE...")
     executar_sql(DW_SQL)
-
-    print("Tabelas criadas com sucesso.")
+    # executar_sql(procedure)
 
 
 if __name__ == "__main__":
