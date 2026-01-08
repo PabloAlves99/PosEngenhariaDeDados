@@ -1,4 +1,6 @@
-CREATE SCHEMA dw;
+USE pnad_covid_dw;
+IF NOT EXISTS (SELECT 1 FROM sys.schemas WHERE name = 'dw')
+    EXEC ('CREATE SCHEMA dw');
 GO
 
 CREATE TABLE dw.dim_tempo

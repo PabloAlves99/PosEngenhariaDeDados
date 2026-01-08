@@ -1,22 +1,35 @@
-CREATE SCHEMA staging;
+USE pnad_covid_dw;
+
+
+IF NOT EXISTS (
+    SELECT 1
+    FROM sys.schemas
+    WHERE name = 'staging'
+)
+BEGIN
+    EXEC ('CREATE SCHEMA staging');
+END;
 GO
 
-CREATE TABLE staging.pnad_covid_pessoa
-(
-    NU_ANO INT,
-    NU_MES INT,
-    UF CHAR(2),
-    CO_MUNICIPIO INT,
-    ID_DOMICILIO BIGINT,
-    ID_PESSOA BIGINT,
-    SEXO CHAR(1),
-    IDADE INT,
-    ESCOLARIDADE INT,
-    OCUPACAO INT,
-    RENDIMENTO DECIMAL(12,2),
-    SINTOMAS INT,
-    INTERNADO CHAR(1),
-    TESTE_COVID CHAR(1),
-    DT_CARGA DATETIME,
-    FAIXA_ETARIA VARCHAR(30)
-);
+IF OBJECT_ID('staging.pnad_covid_pessoa', 'U') IS NULL
+BEGIN
+    CREATE TABLE staging.pnad_covid_pessoa
+    (
+        NU_ANO INT,
+        NU_MES INT,
+        UF CHAR(2),
+        CO_MUNICIPIO INT,
+        ID_DOMICILIO BIGINT,
+        ID_PESSOA BIGINT,
+        SEXO CHAR(1),
+        IDADE INT,
+        ESCOLARIDADE INT,
+        OCUPACAO INT,
+        RENDIMENTO DECIMAL(12,2),
+        SINTOMAS INT,
+        INTERNADO CHAR(1),
+        TESTE_COVID CHAR(1),
+        DT_CARGA DATETIME2(0)
+    );
+END;
+GO

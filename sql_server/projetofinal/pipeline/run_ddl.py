@@ -5,13 +5,13 @@ import pyodbc
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STAGING_SQL = os.path.join(BASE_DIR, "sql", "staging.sql")
 DW_SQL = os.path.join(BASE_DIR, "sql", "dw.sql")
-# procedure = os.path.join(BASE_DIR, "sql", "usp_carregar_fato.sql")
+PROCEDURES_SQL = os.path.join(BASE_DIR, "sql", "procedures.sql")
 
 # Conexão SQL Server
 CONN_STR = (
     "DRIVER={ODBC Driver 17 for SQL Server};"
     "SERVER=localhost,1433;"
-    "DATABASE=master;"
+    "DATABASE=pnad_covid_dw;"
     "UID=sa;"
     "PWD=SenhaForte123!;"
     "TrustServerCertificate=yes;"
@@ -35,10 +35,27 @@ def executar_sql(arquivo_sql):
     conn.close()
 
 
+def executar_procedure(arquivo_sql):
+    with open(arquivo_sql, "r", encoding="utf-8") as f:
+        script = f.read()
+
+    conn = pyodbc.connect(CONN_STR)
+    cursor = conn.cursor()
+
+    cursor.execute(script)
+
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+
 def main():
     executar_sql(STAGING_SQL)
     executar_sql(DW_SQL)
-    # executar_sql(procedure)
+    executar_procedure("sql/procedures/prc_dim_tempo.sql")
+    executar_procedure("sql/procedures/prc_dim_municipio.sql")
+    executar_procedure("sql/procedures/prc_dim_pessoa.sql")
+    executar_procedure("sql/procedures/prc_fato_pnad_covid.sql")
 
 
 if __name__ == "__main__":
