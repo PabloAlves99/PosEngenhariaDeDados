@@ -2,6 +2,8 @@ CREATE OR ALTER PROCEDURE dw.prc_fato_pnad_covid
 WITH EXECUTE AS OWNER
 AS
 BEGIN
+    SET NOCOUNT ON;
+
     INSERT INTO dw.fato_pnad_covid
     (
         sk_tempo,
@@ -17,11 +19,11 @@ BEGIN
         t.sk_tempo,
         m.sk_municipio,
         p.sk_pessoa,
-        s.OCUPACAO,
-        s.RENDIMENTO,
-        s.SINTOMAS,
-        s.INTERNADO,
-        s.TESTE_COVID
+        MAX(s.OCUPACAO)        AS ocupacao,
+        AVG(s.RENDIMENTO)     AS rendimento,
+        SUM(s.SINTOMAS)       AS sintomas,
+        MAX(s.INTERNADO)      AS internado,
+        MAX(s.TESTE_COVID)    AS teste_covid
     FROM staging.pnad_covid_pessoa s
     JOIN dw.dim_tempo t
         ON t.nu_ano = s.NU_ANO
@@ -38,5 +40,17 @@ BEGIN
                WHEN s.IDADE BETWEEN 30 AND 49 THEN '30-49'
                WHEN s.IDADE BETWEEN 50 AND 64 THEN '50-64'
                ELSE '65+'
-           END;
+           END
+    WHERE NOT EXISTS (
+        SELECT 1
+        FROM dw.fato_pnad_covid f
+        WHERE f.sk_tempo = t.sk_tempo
+          AND f.sk_municipio = m.sk_municipio
+          AND f.sk_pessoa = p.sk_pessoa
+    )
+    GROUP BY
+        t.sk_tempo,
+        m.sk_municipio,
+        p.sk_pessoa;
 END;
+GO
