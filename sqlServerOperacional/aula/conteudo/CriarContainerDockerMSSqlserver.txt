@@ -1,0 +1,10 @@
+Comando para criar container docker MS SQLServer:
+-------------------------------------------------
+
+docker run --name sqlserver2019 \
+  -e "ACCEPT_EULA=Y" \
+  -e "SA_PASSWORD=P@ssw0rd" \
+  -e "TZ=America/Sao_Paulo" \
+  -p 1433:1433 \
+  -v c:\mssql:/var/opt/mssql \
+  -d mcr.microsoft.com/mssql/server:2019-latest
