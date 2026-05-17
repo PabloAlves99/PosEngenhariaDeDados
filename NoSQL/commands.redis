@@ -1,0 +1,31 @@
+SET user name 'Carlos'
+get user:name
+
+
+SET site:visitas 1
+get site:visitas
+
+SET site:visitas 2
+SET site:visitas 3
+get site:visitas
+
+LPUSH tarefas 'ler' 'estudar' 'caminhar'
+LRANGE tarefas 0 -1
+
+sadd produtos  'livro' 'caneta' 'caderno'
+SMEMBERS produtos
+SISMEMBER produtos 'caneta'
+SISMEMBER produtos 'borracha'
+
+HSET user:101 nome "João" idade "25" email "joao@email.com"
+HGET user:101 nome
+HGETALL user:101
+
+ZADD rank 300 jogador:Ana
+ZADD rank 250 jogador:Beatriz
+ZADD rank 400 jogador:Carlos
+ZRANGE rank 0 -1
+
+
+EXPIRE user:name 60
+
